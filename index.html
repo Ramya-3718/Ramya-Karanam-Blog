@@ -1,410 +1,296 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Raghuvardhan Karanam - Senior Software Engineer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ramya Karanam — Technical Writer & Support Engineer</title>
+  <meta name="description" content="Resume / Portfolio — Ramya Karanam. Technical Writer, Technical Support Engineer, .NET & REST APIs." />
   <style>
-    :root {
-      --bg: #f7f7f7;
-      --card-bg: #ffffff;
-      --text: #222222;
-      --muted: #555555;
-      --accent: #2563eb;
-      --accent-soft: #dbeafe;
-      --border: #e5e7eb;
-      --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
-      --radius: 18px;
-      --max-width: 960px;
+    /* Minimal reset */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,#eef6ff 0%,#ffffff 40%);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    /* layout */
+    .wrap{max-width:980px;margin:24px auto;padding:20px}
+    header{position:sticky;top:10px;background:rgba(255,255,255,0.75);backdrop-filter:blur(6px);border-radius:14px;padding:10px;border:1px solid rgba(15,23,42,0.04);display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .brand{font-weight:700;letter-spacing:0.02em}
+    nav a{color:#475569;margin-left:14px;text-decoration:none;font-weight:600}
+    nav a:hover{color:#1e3a8a}
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      background: radial-gradient(circle at top, #e0edff 0, #f7f7f7 40%);
-      color: var(--text);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
+    .hero{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:center;margin-top:18px}
+    .eyebrow{font-weight:700;color:#1e40af;letter-spacing:0.12em;text-transform:uppercase;font-size:12px}
+    h1{font-size:34px;margin:6px 0}
+    .subtitle{color:#475569;font-weight:600;margin-bottom:8px}
+    .lead{color:#475569;margin-bottom:12px}
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;font-weight:700;border:1px solid transparent;cursor:pointer;text-decoration:none}
+    .btn-primary{background:#1e3a8a;color:white;box-shadow:0 10px 30px rgba(30,58,138,0.18)}
+    .btn-ghost{background:white;color:#475569;border:1px solid rgba(15,23,42,0.06)}
 
-    a:hover {
-      text-decoration: underline;
-    }
+    .photo-card{background:white;border-radius:999px;padding:8px;border:1px solid rgba(15,23,42,0.05);box-shadow:0 18px 40px rgba(2,6,23,0.06);width:260px;height:260px;display:flex;align-items:center;justify-content:center;position:relative}
+    .photo{width:200px;height:200px;border-radius:999px;object-fit:cover}
+    .status-pill{position:absolute;bottom:14px;right:10px;background:#0f172a;color:#e6eefc;padding:8px 12px;border-radius:999px;font-weight:700;font-size:12px;display:flex;align-items:center;gap:8px}
+    .status-dot{width:8px;height:8px;border-radius:999px;background:#22c55e;box-shadow:0 0 0 6px rgba(34,197,94,0.12)}
 
-    .page {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 20px 16px 60px;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(to bottom,
-          rgba(247, 247, 247, 0.96),
-          rgba(247, 247, 247, 0.9),
-          transparent);
-      margin-bottom: 20px;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 4px;
-    }
-
-    .nav-left {
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.9rem;
-    }
-
-    .nav-links a {
-      padding: 4px 6px;
-      border-radius: 8px;
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    .nav-links a:hover {
-      background: var(--accent-soft);
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    /* Hero */
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-      gap: 32px;
-      align-items: center;
-      margin: 10px 0 32px;
-    }
-
-    .hero-title {
-      font-size: 2.3rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 6px;
-    }
-
-    .hero-subtitle {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 10px;
-    }
-
-    .hero-text {
-      font-size: 0.98rem;
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .hero-text strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.08s ease, box-shadow 0.08s ease,
-        background 0.1s ease, border-color 0.1s ease;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #ffffff;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
-      text-decoration: none;
-    }
-
-    .btn-ghost {
-      background: #ffffff;
-      color: var(--muted);
-      border-color: var(--border);
-    }
-
-    .btn-ghost:hover {
-      background: #f9fafb;
-      text-decoration: none;
-    }
-
-    .hero-photo-wrapper {
-      justify-self: center;
-    }
-
-    .hero-photo-card {
-      background: var(--card-bg);
-      border-radius: 999px;
-      padding: 6px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      position: relative;
-    }
-
-    .hero-photo {
-      width: 180px;
-      height: 180px;
-      border-radius: 999px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .hero-pill {
-      position: absolute;
-      bottom: 12px;
-      right: -6px;
-      background: rgba(15, 23, 42, 0.96);
-      color: #e5e7eb;
-      padding: 6px 11px;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.6);
-    }
-
-    .hero-pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
-    }
-
-    /* Sections */
-
-    section {
-      margin-bottom: 32px;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .section-subtitle {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
+    section{margin-top:26px}
+    .section-head{display:flex;justify-content:space-between;align-items:baseline}
+    .section-title{font-size:18px;font-weight:800}
+    .section-sub{color:#64748b;font-size:13px}
 
     /* Skills */
-
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .skill-pill {
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #ffffff;
-      border: 1px solid var(--border);
-      font-size: 0.82rem;
-      color: var(--muted);
-      box-shadow: 0 3px 9px rgba(148, 163, 184, 0.2);
-    }
+    .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .chip{background:white;padding:8px 12px;border-radius:999px;border:1px solid rgba(15,23,42,0.04);font-weight:600;color:#334155}
 
     /* Experience */
+    .timeline{display:grid;gap:14px;margin-top:14px}
+    .exp{background:white;padding:16px;border-radius:14px;border:1px solid rgba(15,23,42,0.04);box-shadow:0 8px 20px rgba(2,6,23,0.04)}
+    .exp h3{margin:0;font-size:15px}
+    .muted{color:#64748b;font-size:13px}
+    .exp ul{margin:8px 0 0 18px;color:#475569}
 
-    .timeline {
-      display: grid;
-      gap: 14px;
-    }
+    /* Cards grid for What I Can Do */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+    .card{background:white;padding:14px;border-radius:14px;border:1px solid rgba(15,23,42,0.04)}
+    .card h4{margin:0 0 6px}
+    .card p{margin:0;color:#475569}
 
-    .experience-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      border: 1px solid var(--border);
-      box-shadow: 0 6px 16px rgba(148, 163, 184, 0.18);
-    }
-
-    .exp-title-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 4px;
-      margin-bottom: 6px;
-    }
-
-    .exp-role {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .exp-company {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .exp-dates {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .exp-body {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-top: 6px;
-    }
-
-    .exp-body ul {
-      padding-left: 18px;
-      margin: 4px 0 0;
-    }
-
-    .exp-body li {
-      margin-bottom: 4px;
-    }
-
-    /* What I Can Do */
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 14px 14px 16px;
-      border: 1px solid var(--border);
-      box-shadow: 0 6px 16px rgba(148, 163, 184, 0.18);
-      font-size: 0.9rem;
-    }
-
-    .card-title {
-      font-weight: 600;
-      margin-bottom: 6px;
-      font-size: 0.95rem;
-    }
-
-    .card-sub {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .card ul {
-      padding-left: 18px;
-      margin: 0;
-    }
-
-    .card li {
-      margin-bottom: 4px;
-    }
-
-    /* Blog */
-
-    .blog-placeholder {
-      background: repeating-linear-gradient(
-        -45deg,
-        #f9fafb,
-        #f9fafb 8px,
-        #eef2ff 8px,
-        #eef2ff 16px
-      );
-      border-radius: var(--radius);
-      border: 1px dashed #c4c9d6;
-      padding: 18px 16px;
-      font-size: 0.9rem;
-      color: var(--muted);
-      box-shadow: 0 6px 16px rgba(148, 163, 184, 0.18);
-    }
-
-    .blog-placeholder strong {
-      color: var(--text);
-    }
+    /* Blog placeholder */
+    .placeholder{background:repeating-linear-gradient(-45deg,#f8fafc,#f8fafc 8px,#eef2ff 8px,#eef2ff 16px);padding:18px;border-radius:14px;border:1px dashed rgba(15,23,42,0.06);color:#64748b}
 
     /* Contact */
+    .contact{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+    .card-contact{background:white;padding:12px;border-radius:12px;border:1px solid rgba(15,23,42,0.04)}
+    .contact a{color:#1e3a8a;font-weight:700}
 
-    .contact-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 16px 18px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-soft);
-      display: grid;
-      gap: 12px;
-      font-size: 0.92rem;
+    footer{margin-top:20px;color:#94a3b8;font-size:13px}
+
+    @media (max-width:920px){
+      .hero{grid-template-columns:1fr 220px}
+      .grid{grid-template-columns:repeat(2,1fr)}
     }
-
-    .contact-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 24px;
+    @media (max-width:640px){
+      header{border-radius:10px;padding:8px}
+      .wrap{padding:12px}
+      .hero{grid-template-columns:1fr;padding-bottom:8px}
+      .photo-card{width:170px;height:170px}
+      .photo{width:140px;height:140px}
+      .grid{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
     }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">Ramya Karanam</div>
+      <nav>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#what-i-can-do">What I Can Do</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-    .contact-label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-    }
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Technical Writer & Technical Support Engineer</div>
+          <h1>Ramya Karanam</h1>
+          <div class="subtitle">Documentation • REST APIs • .NET • Support</div>
+          <p class="lead">Versatile Technical Writer and Technical Support Engineer experienced in documenting UI workflows, REST APIs, and .NET web applications. I translate complex technical processes into clear, user-friendly documentation and diagnose production issues to improve usability and reduce incidents.</p>
 
-    .contact-value {
-      font-weight: 500;
-    }
+          <div class="actions">
+            <a class="btn btn-primary" href="#contact">Contact me</a>
+            <a class="btn btn-ghost" href="Ramya_Karanam_Resume.pdf" target="_blank" rel="noopener">View Resume</a>
+          </div>
 
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10p
+          <div style="margin-top:12px;color:#64748b">Email: <a href="mailto:karanamramya3718@gmail.com">karanamramya3718@gmail.com</a> · +91-8970357206 · Bangalore, Karnataka</div>
+        </div>
+
+        <div style="display:flex;justify-content:center;align-items:center">
+          <div class="photo-card">
+            <img class="photo" src="profile.jpg" alt="Ramya photo" />
+            <div class="status-pill"><span class="status-dot"></span>Open to opportunities</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <div class="section-head">
+          <div>
+            <div class="section-title">Skills</div>
+            <div class="section-sub">Documentation, support, and technical stack</div>
+          </div>
+        </div>
+        <div class="skills">
+          <div class="chip">UI Workflows</div>
+          <div class="chip">REST API Documentation</div>
+          <div class="chip">Swagger</div>
+          <div class="chip">User Guides</div>
+          <div class="chip">Technical Writing</div>
+          <div class="chip">C#</div>
+          <div class="chip">.NET Core</div>
+          <div class="chip">SQL</div>
+          <div class="chip">HTML / CSS / JS</div>
+          <div class="chip">Postman</div>
+          <div class="chip">Git</div>
+          <div class="chip">Jira</div>
+          <div class="chip">Agile</div>
+          <div class="chip">Markdown</div>
+          <div class="chip">Log Analysis</div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <div class="section-head">
+          <div class="section-title">Experience</div>
+          <div class="section-sub">Selected roles and impact</div>
+        </div>
+
+        <div class="timeline">
+          <article class="exp">
+            <h3>Technical Writer — Han Digital Solution Pvt Ltd</h3>
+            <div class="muted">Feb 2025 — May 2025</div>
+            <div style="margin-top:8px;color:#475569">
+              <ul>
+                <li>Analyzed UI interaction recordings to create structured internal and client-facing documentation.</li>
+                <li>Authored user guides, process documents, and release notes to improve onboarding efficiency.</li>
+                <li>Designed API reference documentation using Swagger to ensure consistent parameter naming and response formatting.</li>
+                <li>Standardized documentation templates and maintained documentation repositories for version changes.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="exp">
+            <h3>Software Engineer — Confiable Solutions</h3>
+            <div class="muted">Sep 2022 — Feb 2022</div>
+            <div style="margin-top:8px;color:#475569">
+              <ul>
+                <li>Developed and maintained responsive web applications using .NET, HTML, CSS, and JavaScript.</li>
+                <li>Provided production support resolving front-end, API, and database issues.</li>
+                <li>Analyzed logs, API calls, and SQL queries to identify and fix performance bottlenecks.</li>
+                <li>Created internal support documentation, deployment guides, and API usage manuals.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="exp">
+            <h3>Software Intern — Zibtek</h3>
+            <div class="muted">Mar 2022 — Aug 2022</div>
+            <div style="margin-top:8px;color:#475569">
+              <ul>
+                <li>Built CRUD web apps using .NET and SQL and integrated Swagger for API docs.</li>
+                <li>Designed DB schemas and optimized SQL queries for performance and consistency.</li>
+                <li>Conducted API testing and validation using Postman.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- WHAT I CAN DO -->
+      <section id="what-i-can-do">
+        <div class="section-head">
+          <div class="section-title">What I Can Do</div>
+          <div class="section-sub">How I can help your team & product</div>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Documentation & Knowledge Bases</h4>
+            <div class="muted">UI flows, user guides, release notes</div>
+            <p style="margin-top:8px">Create clear, versioned documentation and KB articles that reduce onboarding time and helpdesk load.</p>
+          </div>
+
+          <div class="card">
+            <h4>API Reference & SDK Docs</h4>
+            <div class="muted">Swagger / OpenAPI, Postman</div>
+            <p style="margin-top:8px">Design consistent API references and examples to make integrations straightforward for clients and partners.</p>
+          </div>
+
+          <div class="card">
+            <h4>Technical Support & Troubleshooting</h4>
+            <div class="muted">Incident triage, log analysis</div>
+            <p style="margin-top:8px">Diagnose production issues, analyze logs and SQL queries, and coordinate fixes with engineering teams.</p>
+          </div>
+
+          <div class="card">
+            <h4>Developer-Facing Docs</h4>
+            <div class="muted">Code examples, migration guides</div>
+            <p style="margin-top:8px">Produce developer documentation and migration guides that help teams adopt new APIs or move legacy systems.</p>
+          </div>
+
+          <div class="card">
+            <h4>Process & Templates</h4>
+            <div class="muted">Style guides, templates</div>
+            <p style="margin-top:8px">Standardize docs with templates and style guidelines to improve consistency and reduce review cycles.</p>
+          </div>
+
+          <div class="card">
+            <h4>Hands-on .NET Support</h4>
+            <div class="muted">C#, .NET Core, SQL</div>
+            <p style="margin-top:8px">Assist with debugging, performance tuning, and quick fixes for .NET webapps and APIs.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOG PLACEHOLDER -->
+      <section id="blog">
+        <div class="section-head">
+          <div class="section-title">Blog</div>
+          <div class="section-sub">Space reserved for future articles</div>
+        </div>
+
+        <div class="placeholder">
+          Coming soon — technical articles about API documentation, support best practices, and .NET tips. Replace this with cards linking to posts when you're ready.
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-head">
+          <div class="section-title">Contact</div>
+          <div class="section-sub">Reach out for work or collaborations</div>
+        </div>
+
+        <div class="contact">
+          <div class="card-contact">
+            <div style="font-weight:800">Email</div>
+            <div style="margin-top:6px"><a href="mailto:karanamramya3718@gmail.com">karanamramya3718@gmail.com</a></div>
+            <div style="margin-top:8px" class="muted">Phone</div>
+            <div style="margin-top:6px">+91-8970357206</div>
+          </div>
+
+          <div class="card-contact">
+            <div style="font-weight:800">Profiles</div>
+            <div style="margin-top:8px" class="muted">LinkedIn • Portfolio</div>
+            <div style="margin-top:8px"><a href="#">LinkedIn</a> · <a href="#">Portfolio</a></div>
+            <div style="margin-top:12px" class="muted">Education & Certs</div>
+            <div style="margin-top:6px">M.C.A — Nitte Meenakshi Institute of Technology (2021–2022)<br/>B.C.A — Maharani Lakshmi Ammanni College For Women (2017–2020)</div>
+            <div style="margin-top:8px" class="muted">Certifications</div>
+            <div style="margin-top:6px">Building Web APIs with ASP.NET Core in .NET — LinkedIn (Sep 2022)<br/>SQL Essential Training — LinkedIn (Dec 2019)</div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>Made by Ramya — based in Bangalore. Resume source: uploaded PDF. :contentReference[oaicite:1]{index=1}</div>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
