@@ -1,248 +1,410 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Ramya Karanam – Technical Writer Portfolio</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <title>Raghuvardhan Karanam - Senior Software Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root{
-      --accent: #0366d6;
-      --muted:#666;
-      --bg:#fafafa;
-      --card:#fff;
-      --maxw:980px;
-      --radius:10px;
-      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+    :root {
+      --bg: #f7f7f7;
+      --card-bg: #ffffff;
+      --text: #222222;
+      --muted: #555555;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --border: #e5e7eb;
+      --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max-width: 960px;
     }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      background: var(--bg);
-      color:#222;
-      margin: 30px;
-      display:flex;
-      justify-content:center;
-      font-size:16px;
-      -webkit-font-smoothing:antialiased;
-    }
-    .container {
-      width:100%;
-      max-width: var(--maxw);
-      background: transparent;
-    }
-    .card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 28px;
-      box-shadow: 0 6px 18px rgba(12,30,50,0.06);
-    }
-    .header {
-      display:flex;
-      gap:20px;
-      align-items:center;
-      margin-bottom:18px;
-    }
-    .photo {
-      width:110px;
-      height:110px;
-      border-radius: 999px;
-      overflow:hidden;
-      flex:0 0 110px;
-      border: 2px solid rgba(3,102,214,0.06);
-    }
-    .photo img { width:100%; height:100%; object-fit:cover; display:block; }
-    .title {
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-    h1 { margin:0; font-size:26px; color:var(--accent); }
-    .subtitle { margin:0; color:var(--muted); font-weight:600; }
-    .contact-row { margin-top:8px; display:flex; gap:10px; flex-wrap:wrap; color:var(--muted); }
-    .contact-row a { color:var(--accent); text-decoration:none; }
-    .intro { margin:18px 0; font-style:italic; color:#333; }
-    hr.section-sep { border:0; border-top:1px solid #eee; margin:18px 0; }
-
-    .grid {
-      display:grid;
-      grid-template-columns: 1fr 320px;
-      gap:24px;
-      align-items:start;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #e0edff 0, #f7f7f7 40%);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .left-col { min-width:0; }
-    .right-col {
-      background: #fff;
-      border-radius:8px;
-      padding:18px;
-      box-shadow: 0 4px 12px rgba(12,30,50,0.04);
-      height:fit-content;
+    a {
+      color: var(--accent);
+      text-decoration: none;
     }
 
-    h2 { margin:0 0 10px 0; color:#1b3b62; font-size:18px; }
-    .section { margin-bottom:18px; }
-    ul { margin:8px 0 0 18px; padding:0; }
-    li { margin-bottom:8px; line-height:1.45; }
-
-    .skills-list { display:flex; flex-wrap:wrap; gap:8px; }
-    .skill-pill {
-      background:#f2f8ff; color:var(--accent);
-      border-radius:999px; padding:6px 10px; font-size:14px;
-      border:1px solid rgba(3,102,214,0.07);
+    a:hover {
+      text-decoration: underline;
     }
 
-    .contact-box { display:flex; flex-direction:column; gap:8px; }
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 20px 16px 60px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom,
+          rgba(247, 247, 247, 0.96),
+          rgba(247, 247, 247, 0.9),
+          transparent);
+      margin-bottom: 20px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 4px;
+    }
+
+    .nav-left {
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      padding: 4px 6px;
+      border-radius: 8px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 32px;
+      align-items: center;
+      margin: 10px 0 32px;
+    }
+
+    .hero-title {
+      font-size: 2.3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+
+    .hero-text {
+      font-size: 0.98rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .hero-text strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
     .btn {
-      display:inline-block;
-      background:var(--accent);
-      color:#fff;
-      padding:9px 12px;
-      border-radius:8px;
-      text-decoration:none;
-      font-weight:600;
-      box-shadow: 0 6px 16px rgba(3,102,214,0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.08s ease, box-shadow 0.08s ease,
+        background 0.1s ease, border-color 0.1s ease;
     }
-    .small { color:var(--muted); font-size:14px; }
 
-    footer { margin-top:24px; color:var(--muted); font-size:13px; text-align:center; }
-    @media (max-width:920px) {
-      .grid { grid-template-columns: 1fr; }
-      .right-col { order: 2; }
-      .header { gap:12px; }
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: var(--shadow-soft);
     }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="card">
 
-      <!-- header -->
-      <div class="header">
-        <div class="photo">
-          <!-- Upload your image to repo at assets/profile.jpg and use this path -->
-          <img src="/profile Pic.jpg" alt="Ramya Karanam" />
-        </div>
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+      text-decoration: none;
+    }
 
-        <div class="title">
-          <h1>Ramya Karanam</h1>
-          <div class="subtitle">Technical Writer · Technical Support Engineer · Product Documentation Specialist</div>
+    .btn-ghost {
+      background: #ffffff;
+      color: var(--muted);
+      border-color: var(--border);
+    }
 
-          <div class="contact-row small">
-            <span>📍 Bangalore, India</span>
-            <span>✉️ <a href="mailto:karanamramya3718@gmail.com">karanamramya3718@gmail.com</a></span>
-            <span>📞 <a href="tel:+918970357206">+91-8970357206</a></span>
-            <span>🔗 <a href="https://www.linkedin.com/in/karanam-ramya" target="_blank" rel="noopener">LinkedIn</a></span>
-          </div>
-        </div>
-      </div>
+    .btn-ghost:hover {
+      background: #f9fafb;
+      text-decoration: none;
+    }
 
-      <div class="intro">I turn complex technical processes into clear, user-friendly documentation that helps users and internal teams succeed.</div>
-      <hr class="section-sep" />
+    .hero-photo-wrapper {
+      justify-self: center;
+    }
 
-      <div class="grid">
-        <!-- LEFT: main content -->
-        <div class="left-col">
+    .hero-photo-card {
+      background: var(--card-bg);
+      border-radius: 999px;
+      padding: 6px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      position: relative;
+    }
 
-          <div class="section">
-            <h2>👩‍💼 About Me</h2>
-            <p>I am a Technical Writer and Support Documentation Specialist with hands-on experience in documenting UI workflows, REST APIs, and .NET web applications, and supporting production systems. I transform technical notes and support tickets into readable, actionable documentation for both end users and internal teams.</p>
-          </div>
+    .hero-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 999px;
+      object-fit: cover;
+      display: block;
+    }
 
-          <div class="section">
-            <h2>📘 What I Did</h2>
+    .hero-pill {
+      position: absolute;
+      bottom: 12px;
+      right: -6px;
+      background: rgba(15, 23, 42, 0.96);
+      color: #e5e7eb;
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.6);
+    }
 
-            <h3 style="margin:6px 0 6px 0;">Technical Writer — Han Digital Solution Pvt Ltd (Feb 2025 – May 2025)</h3>
-            <ul>
-              <li>Authored step-by-step user guides, release notes, and process documents to improve onboarding and reduce friction.</li>
-              <li>Created API reference pages using Swagger and integrated examples for non-developer readers.</li>
-              <li>Produced knowledge-base articles and visual workflow diagrams to reduce repeat support tickets.</li>
-              <li>Standardized documentation templates and style rules to ensure consistency across teams.</li>
-              <li>Worked directly with QA and product to validate steps and reproduce scenarios for accurate documentation.</li>
-            </ul>
+    .hero-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
 
-            <h3 style="margin:10px 0 6px 0;">Software Engineer — Confiable Solutions (Sep 2022 – Feb 2024)</h3>
-            <ul>
-              <li>Provided application & production support, troubleshooting front-end, API and database issues.</li>
-              <li>Documented internal runbooks, deployment steps, and handover notes for operations teams.</li>
-              <li>Converted recurring support incidents into clear KB articles, reducing average resolution time.</li>
-              <li>Collaborated with designers and QA to write UI text and in-app help copy improving usability.</li>
-              <li>Authored API usage manuals and consumer-facing docs for third-party integrations.</li>
-            </ul>
+    /* Sections */
 
-            <h3 style="margin:10px 0 6px 0;">Software Intern — Zibtek (Mar 2022 – Aug 2022)</h3>
-            <ul>
-              <li>Built sample CRUD pages and documented workflows for testing and onboarding.</li>
-              <li>Assisted in API testing and created test-case documentation and reports.</li>
-              <li>Prepared release notes and client-facing documentation for delivered modules.</li>
-            </ul>
-          </div>
+    section {
+      margin-bottom: 32px;
+    }
 
-          <div class="section">
-            <h2>🛠 What I Can Do</h2>
-            <ul>
-              <li>Create clear user guides and onboarding documentation tailored for non-technical users.</li>
-              <li>Write troubleshooting articles and knowledge-base content that resolves common support issues.</li>
-              <li>Document UI workflows, SOPs, and internal processes for teams and new hires.</li>
-              <li>Author release notes, feature summaries, and user-facing announcements.</li>
-              <li>Collaborate with product, design, QA and support to keep docs accurate and useful.</li>
-            </ul>
-          </div>
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
 
-        </div>
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
 
-        <!-- RIGHT: skills & contact -->
-        <aside class="right-col">
-          <div class="section">
-            <h2>🎯 Skills</h2>
-            <div class="skills-list" style="margin-bottom:12px;">
-              <!-- Add or change skill pills as you like -->
-              <div class="skill-pill">UI Workflows</div>
-              <div class="skill-pill">User Guides</div>
-              <div class="skill-pill">Knowledge Base</div>
-              <div class="skill-pill">Release Notes</div>
-              <div class="skill-pill">API Docs (Swagger)</div>
-              <div class="skill-pill">Support Docs / Runbooks</div>
-              <div class="skill-pill">Style Guides</div>
-              <div class="skill-pill">Information Architecture</div>
-              <div class="skill-pill">Content Strategy</div>
-              <div class="skill-pill">Accessibility (A11y)</div>
-              <div class="skill-pill">Localization-ready Docs</div>
-              <div class="skill-pill">Notion / Confluence</div>
-              <div class="skill-pill">Jira / Ticket Triaging</div>
-            </div>
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
 
-            <div style="font-size:14px;color:var(--muted);line-height:1.4">
-              <strong>Technical:</strong> .NET Core, C#, SQL, HTML, CSS, REST APIs, Postman, Swagger<br>
-              <strong>Tools:</strong> Notion, Confluence, Google Docs, MS Word, Snagit, Canva, Git, Jira<br>
-              <strong>Soft skills:</strong> Clear communication, user empathy, structured thinking, collaboration
-            </div>
-          </div>
+    /* Skills */
 
-          <hr style="border:0;border-top:1px solid #eee;margin:12px 0;" />
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
-          <div class="section contact-box">
-            <h2>📬 Contact</h2>
-            <div class="small">Email</div>
-            <a class="btn" href="mailto:karanamramya3718@gmail.com">Email Ramya</a>
+    .skill-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      box-shadow: 0 3px 9px rgba(148, 163, 184, 0.2);
+    }
 
-            <div class="small" style="margin-top:8px">Call</div>
-            <a class="btn" href="tel:+918970357206">+91-8970357206</a>
+    /* Experience */
 
-            <div class="small" style="margin-top:8px">LinkedIn</div>
-            <a class="btn" href="https://www.linkedin.com/in/karanam-ramya" target="_blank" rel="noopener">View LinkedIn</a>
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
 
-            <div style="display:flex;gap:8px;margin-top:10px;">
-              <a href="assets/Ramya_Karanam_Resume.pdf" class="btn" style="background:#2b2b2b;text-decoration:none;font-weight:600;" target="_blank">Download Resume</a>
-              <a href="https://ramya-3718.github.io" class="btn" style="background:#0a6b3a;text-decoration:none;font-weight:600;" target="_blank">View Portfolio</a>
-            </div>
-            <div style="margin-top:10px;font-size:13px;color:var(--muted)">Open to Technical Writing & Support Documentation roles (remote / hybrid)</div>
-          </div>
+    .experience-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 16px rgba(148, 163, 184, 0.18);
+    }
 
-        </aside>
-      </div>
+    .exp-title-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
 
-      <footer>
-        © <strong>Ramya Karanam</strong> · Technical Writer · Built with GitHub Pages
-      </footer>
-    </div>
-  </div>
-</body>
-</html>
+    .exp-role {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .exp-company {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .exp-dates {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .exp-body {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .exp-body ul {
+      padding-left: 18px;
+      margin: 4px 0 0;
+    }
+
+    .exp-body li {
+      margin-bottom: 4px;
+    }
+
+    /* What I Can Do */
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 14px 14px 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 16px rgba(148, 163, 184, 0.18);
+      font-size: 0.9rem;
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .card-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .card ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .card li {
+      margin-bottom: 4px;
+    }
+
+    /* Blog */
+
+    .blog-placeholder {
+      background: repeating-linear-gradient(
+        -45deg,
+        #f9fafb,
+        #f9fafb 8px,
+        #eef2ff 8px,
+        #eef2ff 16px
+      );
+      border-radius: var(--radius);
+      border: 1px dashed #c4c9d6;
+      padding: 18px 16px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      box-shadow: 0 6px 16px rgba(148, 163, 184, 0.18);
+    }
+
+    .blog-placeholder strong {
+      color: var(--text);
+    }
+
+    /* Contact */
+
+    .contact-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: 12px;
+      font-size: 0.92rem;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+    }
+
+    .contact-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .contact-value {
+      font-weight: 500;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10p
