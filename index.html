@@ -21,27 +21,72 @@
 
     /* layout */
     .wrap{max-width:980px;margin:24px auto;padding:20px}
-    header {
+    /* ---------- HEADER (bigger, and will turn blue on scroll) ---------- */
+header {
   position: sticky;
   top: 0;
-  z-index: 20;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-
-  /* Bigger, more solid header */
+  z-index: 120;
   height: 70px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 22px;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 
-  padding: 0 24px;
-  border-radius: 0; /* remove floating look to avoid odd color gap */
-  border-bottom: 1px solid rgba(15,23,42,0.08);
+  /* default (at top) */
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
 
-  /* Smooth transition */
-  transition: background 0.25s ease, height 0.25s ease;
+  /* smooth transition when color / shadow changes */
+  transition: background-color 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
 }
+
+/* header state when scrolled (class added by JS) */
+header.scrolled {
+  background: linear-gradient(90deg, #11366d 0%, #1e40af 100%);
+  border-bottom-color: rgba(14, 46, 94, 0.18);
+  box-shadow: 0 8px 30px rgba(14, 46, 94, 0.14);
+}
+
+/* brand + nav inside header */
+.brand {
+  font-weight: 700;
+  color: #0f172a;
+  transition: color 280ms ease;
+}
+
+/* brand color when header is scrolled (to keep contrast) */
+header.scrolled .brand {
+  color: #eef6ff;
+}
+
+/* nav links - default */
+nav a {
+  color: #475569;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 70px; /* centers vertically inside header */
+  transition: color 220ms ease, opacity 220ms ease;
+}
+
+/* nav link hover (default) */
+nav a:hover {
+  color: #1e3a8a;
+}
+
+/* nav links when header is scrolled (white-ish for contrast) */
+header.scrolled nav a {
+  color: rgba(238, 246, 255, 0.95);
+  opacity: 0.95;
+}
+
+header.scrolled nav a:hover {
+  color: #ffffff;
+}
+
 
     .brand{font-weight:700;letter-spacing:0.02em}
     nav a{color:#475569;margin-left:14px;text-decoration:none;font-weight:600}
@@ -110,6 +155,37 @@
     }
   </style>
 </head>
+  <script>
+  (function () {
+    const header = document.querySelector('header');
+    if (!header) return;
+
+    const SCROLL_CLASS = 'scrolled';
+    const THRESHOLD = 48; // px scrolled before header turns blue
+
+    // on page load, check initial scroll (useful if linking directly to inner anchors)
+    function check() {
+      if (window.scrollY > THRESHOLD) header.classList.add(SCROLL_CLASS);
+      else header.classList.remove(SCROLL_CLASS);
+    }
+
+    // throttle using requestAnimationFrame for smoothness
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          check();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // initial call
+    check();
+  })();
+</script>
+
 <body>
   <div class="wrap">
     <header>
