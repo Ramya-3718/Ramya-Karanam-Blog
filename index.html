@@ -12,86 +12,99 @@
     body{
       margin:0;
       font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      background:linear-gradient(180deg,#eef6ff 0%,#ffffff 40%);
+      background: linear-gradient(180deg,#eef6ff 0%,#ffffff 40%);
       color:#0f172a;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
+      transition: background 320ms ease;
+    }
+
+    /* When scrolled, body background subtly deepens to match header */
+    body.scrolled {
+      background: linear-gradient(180deg,#e6f0ff 0%,#eaf2ff 30%, #f7fbff 100%);
     }
 
     /* layout */
     .wrap{max-width:980px;margin:24px auto;padding:20px}
+
     /* ---------- HEADER (bigger, and will turn blue on scroll) ---------- */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 120;
-  height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 22px;
-  border-radius: 0;
-  /*border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 120;
+      height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 22px;
+      border-radius: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+      transition: background-color 280ms ease, box-shadow 280ms ease, border-color 280ms ease, height 220ms ease;
+    }
 
-  /* default (at top) */
-  /*background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
+    /* header state when scrolled (class added by JS) */
+    header.scrolled {
+      background: linear-gradient(90deg, #11366d 0%, #1e40af 100%);
+      border-bottom-color: rgba(14, 46, 94, 0.18);
+      box-shadow: 0 8px 30px rgba(14, 46, 94, 0.14);
+    }
 
-  /* smooth transition when color / shadow changes */
-  transition: background-color 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
-}
+    /* brand on the left */
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: #0f172a;
+      font-size: 1rem;
+      margin-right: 12px;
+      transition: color 280ms ease;
+    }
 
-/* header state when scrolled (class added by JS) */
-header.scrolled {
-  background: linear-gradient(90deg, #11366d 0%, #1e40af 100%);
-  border-bottom-color: rgba(14, 46, 94, 0.18);
-  box-shadow: 0 8px 30px rgba(14, 46, 94, 0.14);
-}
+    /* brand color when header is scrolled (to keep contrast) */
+    header.scrolled .brand {
+      color: #eef6ff;
+    }
 
-/* brand + nav inside header */
-.brand {
-  font-weight: 700;
-  color: #0f172a;
-  transition: color 280ms ease;
-}
+    /* nav on the right */
+    nav {
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
 
-/* brand color when header is scrolled (to keep contrast) */
-header.scrolled .brand {
-  color: #eef6ff;
-}
+    /* nav links - default */
+    nav a {
+      color: #475569;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 10px 6px;
+      border-radius: 8px;
+      line-height: 1;
+      transition: color 220ms ease, background 220ms ease;
+    }
 
-/* nav links - default */
-nav a {
-  color: #475569;
-  margin-left: 20px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  line-height: 70px; /* centers vertically inside header */
-  transition: color 220ms ease, opacity 220ms ease;
-}
+    /* align nav vertically and keep nav on the right */
+    header .nav-left-space { flex: 1 1 auto; }
 
-/* nav link hover (default) */
-nav a:hover {
-  color: #1e3a8a;
-}
+    nav a:hover {
+      color: #0f172a;
+      background: rgba(15,23,42,0.04);
+    }
 
-/* nav links when header is scrolled (white-ish for contrast) */
-header.scrolled nav a {
-  color: rgba(238, 246, 255, 0.95);
-  opacity: 0.95;
-}
+    /* nav links when header is scrolled (white-ish for contrast) */
+    header.scrolled nav a {
+      color: rgba(238,246,255,0.95);
+      background: transparent;
+    }
+    header.scrolled nav a:hover {
+      color: #ffffff;
+      background: rgba(255,255,255,0.06);
+    }
 
-header.scrolled nav a:hover {
-  color: #ffffff;
-}
-
-
-    .brand{font-weight:700;letter-spacing:0.02em}
-    nav a{color:#475569;margin-left:14px;text-decoration:none;font-weight:600}
-    nav a:hover{color:#1e3a8a}
-
+    /* HERO */
     .hero{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:center;margin-top:18px}
     .eyebrow{font-weight:700;color:#1e40af;letter-spacing:0.12em;text-transform:uppercase;font-size:12px}
     h1{font-size:34px;margin:6px 0}
@@ -109,7 +122,7 @@ header.scrolled nav a:hover {
     .status-dot{width:8px;height:8px;border-radius:999px;background:#22c55e;box-shadow:0 0 0 6px rgba(34,197,94,0.12)}
 
     section{margin-top:26px}
-    .section-head{display:flex;justify-content:space-between;align-items:baseline}
+    .section-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
     .section-title{font-size:18px;font-weight:800}
     .section-sub{color:#64748b;font-size:13px}
 
@@ -133,62 +146,44 @@ header.scrolled nav a:hover {
     /* Blog placeholder */
     .placeholder{background:repeating-linear-gradient(-45deg,#f8fafc,#f8fafc 8px,#eef2ff 8px,#eef2ff 16px);padding:18px;border-radius:14px;border:1px dashed rgba(15,23,42,0.06);color:#64748b}
 
-    /* Contact */
-    .contact{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
-    .card-contact{background:white;padding:12px;border-radius:12px;border:1px solid rgba(15,23,42,0.04)}
-    .contact a{color:#1e3a8a;font-weight:700}
+    /* CONTACT - reworked */
+    .contact{display:grid;grid-template-columns:1fr 320px;gap:14px;margin-top:12px;align-items:start}
+    .card-contact{background:white;padding:14px;border-radius:12px;border:1px solid rgba(15,23,42,0.04)}
+    .contact a{color:#1e3a8a;font-weight:700;text-decoration:none}
+    .contact a:hover{text-decoration:underline}
 
-    footer{margin-top:20px;color:#94a3b8;font-size:13px}
+    .contact .left { display: grid; gap:10px; }
+    .contact .contact-row { display:flex; align-items:center; gap:12px; }
+    .contact .icon { width:44px; height:44px; border-radius:10px; background:#f1f5f9; display:flex; align-items:center; justify-content:center; color:#1e3a8a; font-weight:800; }
+    .contact .info { font-weight:700; }
+    .contact .info .muted { font-weight:500; color:#64748b; font-size:0.92rem; }
 
+    /* small responsive */
     @media (max-width:920px){
       .hero{grid-template-columns:1fr 220px}
       .grid{grid-template-columns:repeat(2,1fr)}
+      .contact{grid-template-columns:1fr 1fr}
     }
     @media (max-width:640px){
-      header{border-radius:10px;padding:8px}
+      header{height:64px;padding:0 14px}
       .wrap{padding:12px}
       .hero{grid-template-columns:1fr;padding-bottom:8px}
       .photo-card{width:170px;height:170px}
       .photo{width:140px;height:140px}
       .grid{grid-template-columns:1fr}
       .contact{grid-template-columns:1fr}
+      nav{gap:10px}
+      nav a{font-size:0.88rem;padding:8px}
     }
   </style>
 </head>
-  <script>
-  (function () {
-    const header = document.querySelector('header');
-    if (!header) return;
-
-    const SCROLL_CLASS = 'scrolled';
-    const THRESHOLD = 48; // px scrolled before header turns blue
-
-    // on page load, check initial scroll (useful if linking directly to inner anchors)
-    function check() {
-      if (window.scrollY > THRESHOLD) header.classList.add(SCROLL_CLASS);
-      else header.classList.remove(SCROLL_CLASS);
-    }
-
-    // throttle using requestAnimationFrame for smoothness
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          check();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-
-    // initial call
-    check();
-  })();
-</script>
 
 <body>
   <div class="wrap">
+    <!-- header: brand left, nav right -->
     <header>
+      <div class="brand">Ramya Karanam</div>
+      <div class="nav-left-space"></div>
       <nav>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
@@ -204,11 +199,25 @@ header.scrolled nav a:hover {
         <div>
           <div class="eyebrow">Technical Writer & Technical Support Engineer</div>
           <h1>Ramya Karanam</h1>
-          <div class="subtitle">Documentation • REST APIs • .NET • Support</div>
-          <p class="lead">Versatile Technical Writer and Technical Support Engineer experienced in documenting UI workflows, REST APIs, and .NET web applications. I translate complex technical processes into clear, user-friendly documentation and diagnose production issues to improve usability and reduce incidents.</p>
 
+          <!-- 2) Updated content under the name (concise, resume-driven) -->
+          <div class="subtitle">Documentation • API Reference • Support & Troubleshooting</div>
+          <p class="lead">
+            I create clear developer and user documentation (API references, SDK docs, runbooks),
+            and provide hands-on technical support for .NET-based web applications.
+            I help reduce onboarding time, resolve production incidents, and make integrations simple for customers.
+          </p>
 
-          <div style="margin-top:12px;color:#64748b">Email: <a href="mailto:karanamramya3718@gmail.com">karanamramya3718@gmail.com</a> · +91-8970357206 · Bangalore, Karnataka</div>
+          <div class="actions">
+            <a class="btn btn-primary" href="#contact">Contact me</a>
+            <a class="btn btn-ghost" href="Ramya_Karanam_Resume.pdf" target="_blank" rel="noopener">View Resume</a>
+          </div>
+
+          <div style="margin-top:12px;color:#64748b">
+            Email: <a href="mailto:karanamramya3718@gmail.com">karanamramya3718@gmail.com</a>
+            · <a href="tel:+918970357206">+91-89703-57206</a>
+            · Bangalore, Karnataka
+          </div>
         </div>
 
         <div style="display:flex;justify-content:center;align-items:center">
@@ -224,24 +233,29 @@ header.scrolled nav a:hover {
         <div class="section-head">
           <div>
             <div class="section-title">Skills</div>
+            <div class="section-sub">Documentation, support, and technical stack</div>
           </div>
         </div>
+
+        <!-- 3) Expanded skills focusing on docs + support -->
         <div class="skills">
-          <div class="chip">UI Workflows</div>
-          <div class="chip">REST API Documentation</div>
-          <div class="chip">Swagger</div>
-          <div class="chip">User Guides</div>
-          <div class="chip">Technical Writing</div>
-          <div class="chip">C#</div>
-          <div class="chip">.NET Core</div>
-          <div class="chip">SQL</div>
-          <div class="chip">HTML / CSS / JS</div>
-          <div class="chip">Postman</div>
-          <div class="chip">Git</div>
-          <div class="chip">Jira</div>
-          <div class="chip">Agile</div>
-          <div class="chip">Markdown</div>
-          <div class="chip">Log Analysis</div>
+          <div class="chip">API Reference (OpenAPI / Swagger)</div>
+          <div class="chip">Postman Collections</div>
+          <div class="chip">DocFX / Sphinx / Markdown</div>
+          <div class="chip">Knowledge Base Management</div>
+          <div class="chip">Runbooks & SOPs</div>
+          <div class="chip">User Guides & Onboarding</div>
+          <div class="chip">Technical Writing & UX Writing</div>
+          <div class="chip">DITA / MadCap / Single-sourcing</div>
+          <div class="chip">REST API Design</div>
+          <div class="chip">C# / .NET Core</div>
+          <div class="chip">SQL / Query Debugging</div>
+          <div class="chip">Log Analysis (ELK / Splunk)</div>
+          <div class="chip">Incident Triage & RCA</div>
+          <div class="chip">Customer Communication</div>
+          <div class="chip">Ticket Triage (Jira)</div>
+          <div class="chip">CI/CD Docs & Release Notes</div>
+          <div class="chip">Accessibility & Content Clarity</div>
         </div>
       </section>
 
@@ -358,20 +372,47 @@ header.scrolled nav a:hover {
           <div class="section-sub">Reach out for work or collaborations</div>
         </div>
 
+        <!-- 4) Reworked contact layout -->
         <div class="contact">
-          <div class="card-contact">
-            <div style="font-weight:800">Email</div>
-            <div style="margin-top:6px"><a href="mailto:karanamramya3718@gmail.com">karanamramya3718@gmail.com</a></div>
-            <div style="margin-top:8px" class="muted">Phone</div>
-            <div style="margin-top:6px">+91-8970357206</div>
+          <div class="left card-contact">
+            <div class="contact-row">
+              <div class="icon">✉</div>
+              <div>
+                <div class="info">karanamramya3718@gmail.com</div>
+                <div class="muted">Email (fastest)</div>
+              </div>
+            </div>
+
+            <div class="contact-row">
+              <div class="icon">☎</div>
+              <div>
+                <div class="info"><a href="tel:+918970357206">+91-89703-57206</a></div>
+                <div class="muted">Phone / WhatsApp</div>
+              </div>
+            </div>
+
+            <div class="contact-row">
+              <div class="icon">📍</div>
+              <div>
+                <div class="info">Bangalore, Karnataka</div>
+                <div class="muted">Timezone: IST (UTC +5:30)</div>
+              </div>
+            </div>
+
+            <div style="margin-top:10px; display:flex; gap:10px;">
+              <a class="btn btn-primary" href="mailto:karanamramya3718@gmail.com">Email</a>
+              <a class="btn btn-ghost" href="Ramya_Karanam_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+            </div>
           </div>
 
           <div class="card-contact">
-            <div style="font-weight:800">Profiles</div>
-            <div style="margin-top:8px" class="muted">LinkedIn</div>
-            <div style="margin-top:8px"><a href="https://www.linkedin.com/in/karanam-ramya/">LinkedIn</a></div>
+            <div style="font-weight:800">Profiles & Education</div>
+            <div style="margin-top:8px" class="muted">LinkedIn • Portfolio</div>
+            <div style="margin-top:8px"><a href="https://www.linkedin.com/in/karanam-ramya/" target="_blank">LinkedIn</a> · <a href="#" target="_blank">Portfolio</a></div>
+
             <div style="margin-top:12px" class="muted">Education & Certs</div>
             <div style="margin-top:6px">M.C.A — Nitte Meenakshi Institute of Technology (2021–2022)<br/>B.C.A — Maharani Lakshmi Ammanni College For Women (2017–2020)</div>
+
             <div style="margin-top:8px" class="muted">Certifications</div>
             <div style="margin-top:6px">Building Web APIs with ASP.NET Core in .NET — LinkedIn (Sep 2022)<br/>SQL Essential Training — LinkedIn (Dec 2019)</div>
           </div>
@@ -383,5 +424,42 @@ header.scrolled nav a:hover {
       </footer>
     </main>
   </div>
+
+  <!-- JS: header color + body background change on scroll -->
+  <script>
+    (function () {
+      const header = document.querySelector('header');
+      const body = document.body;
+      if (!header || !body) return;
+
+      const SCROLL_CLASS = 'scrolled';
+      const THRESHOLD = 48; // px scrolled before header turns blue
+
+      function check() {
+        if (window.scrollY > THRESHOLD) {
+          header.classList.add(SCROLL_CLASS);
+          body.classList.add(SCROLL_CLASS);
+        } else {
+          header.classList.remove(SCROLL_CLASS);
+          body.classList.remove(SCROLL_CLASS);
+        }
+      }
+
+      // throttle using requestAnimationFrame for smoothness
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            check();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // initial call (works if page loads scrolled)
+      check();
+    })();
+  </script>
 </body>
 </html>
